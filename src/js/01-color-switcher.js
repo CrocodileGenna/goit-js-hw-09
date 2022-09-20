@@ -2,7 +2,7 @@
 const start = document.querySelector("button[data-start]");
 const body = document.querySelector("body")
 const stop = document.querySelector("button[data-stop]");
-
+let intervalColor;
 start.addEventListener('click', randomColorBody)
 
 function getRandomHexColor() {
