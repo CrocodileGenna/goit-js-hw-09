@@ -83,14 +83,23 @@ function fnTaimer(){
     convertMs(minMs);
   }, 1000)
 }
+// ---------------------------------------------------- //
+const divTimer = document.querySelector(".timer");
+const divField = document.querySelectorAll(".field");
 
-const divTimer = document.querySelector("timer");
-const divField = document.querySelector("field");
+divTimer.style.display = "flex";
+divTimer.style.marginTop = "20px";
+for(key of divField){
+  key.style.display = "flex"
+  key.style.flexDirection = "column";
+  key.style.marginRight = "25px";
+  key.style.textAlign= "center";
+}
 
-// divTimer.style.displey = "flex";
-// divField.style.marginRight = "25px";
+console.log(divField);
 
 buttonData.style.backgroundColor = "yellow";
 buttonData.style.padding = "20px 40px";
 buttonData.style.outline = "green solid 1px";
-buttonData.style.borderRadius = "50%"
+buttonData.style.borderRadius = "50%";
+
