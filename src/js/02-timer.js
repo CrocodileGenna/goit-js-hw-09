@@ -52,10 +52,22 @@ function convertMs(ms) {
   // console.log({ days, hours, minutes, seconds })
 
   dataSec.innerHTML = seconds;
+  if(dataSec.innerHTML < 10){
+    dataSec.innerHTML = `0${seconds}`;
+  }
   dataMin.innerHTML = minutes;
+  if(dataMin.innerHTML < 10){
+    dataMin.innerHTML = `0${minutes}`;
+  }
   dataHou.innerHTML = hours;
+  if(dataHou.innerHTML < 10){
+    dataHou.innerHTML = `0${hours}`;
+  }
   dataDay.innerHTML = days;
-  
+  if(dataDay.innerHTML < 10){
+    dataDay.innerHTML = `0${days}`;
+  }
+
   return { days, hours, minutes, seconds };
 }
 
@@ -64,13 +76,21 @@ function convertMs(ms) {
 buttonData.addEventListener('click', fnTaimer);
 
 function fnTaimer(){
-  buttonData.setAttribute('disabled', true)
+  buttonData.setAttribute('disabled', true);
+  inputData.setAttribute('disabled', true);
   setInterval(()=>{
     const minMs = thruSumaTime[thruSumaTime.length - 1] - Date.now();
     convertMs(minMs);
   }, 1000)
 }
 
-buttonData.style.backgroundColor = "green";
+const divTimer = document.querySelector("timer");
+const divField = document.querySelector("field");
+
+// divTimer.style.displey = "flex";
+// divField.style.marginRight = "25px";
+
+buttonData.style.backgroundColor = "yellow";
 buttonData.style.padding = "20px 40px";
 buttonData.style.outline = "green solid 1px";
+buttonData.style.borderRadius = "50%"
