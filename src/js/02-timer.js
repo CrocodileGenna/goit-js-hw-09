@@ -1,17 +1,14 @@
-// Описаний в документації
 import flatpickr from "flatpickr";
-// Додатковий імпорт стилів
 import "flatpickr/dist/flatpickr.min.css";
-// import { set } from "lodash";
 import Notiflix from 'notiflix';
 
 const inputData = document.querySelector('input');
 const buttonData = document.querySelector('button');
+const dataSec = document.querySelector('span.value[data-seconds]');
+const dataMin = document.querySelector('span.value[data-minutes]');
+const dataHou = document.querySelector('span.value[data-hours]');
+const dataDay = document.querySelector('span.value[data-days]');
 
-const dataSec = document.querySelector('span[data-seconds]');
-const dataMin = document.querySelector('span[data-minutes]');
-const dataHou = document.querySelector('span[data-hours]');
-const dataDay = document.querySelector('span[data-days]');
 
 const options = {
     enableTime: true,
@@ -42,37 +39,27 @@ function convertMs(ms) {
   const day = hour * 24;
 
   // Remaining days
-  const days = Math.floor(ms / day);
+  const days = addLeadingZero(Math.floor(ms / day));
   // Remaining hours
-  const hours = Math.floor((ms % day) / hour);
+  const hours = addLeadingZero(Math.floor((ms % day) / hour));
   // Remaining minutes
-  const minutes = Math.floor(((ms % day) % hour) / minute);
+  const minutes = addLeadingZero(Math.floor(((ms % day) % hour) / minute));
   // Remaining seconds
-  const seconds = Math.floor((((ms % day) % hour) % minute) / second);
+  const seconds = addLeadingZero(Math.floor((((ms % day) % hour) % minute) / second));
   // console.log({ days, hours, minutes, seconds })
+  renderMarckup({ days, hours, minutes, seconds })
 
-  dataSec.innerHTML = seconds;
-  if(dataSec.innerHTML < 10){
-    dataSec.innerHTML = `0${seconds}`;
-  }
-  dataMin.innerHTML = minutes;
-  if(dataMin.innerHTML < 10){
-    dataMin.innerHTML = `0${minutes}`;
-  }
-  dataHou.innerHTML = hours;
-  if(dataHou.innerHTML < 10){
-    dataHou.innerHTML = `0${hours}`;
-  }
-  dataDay.innerHTML = days;
-  if(dataDay.innerHTML < 10){
-    dataDay.innerHTML = `0${days}`;
-  }
-  
   return { days, hours, minutes, seconds };
 }
 
-function addLeadingZero(value){
-
+function addLeadingZero(value) {
+  return String(value).padStart(2, '0');
+}
+function renderMarckup({ days, hours, minutes, seconds }){
+  dataSec.innerHTML = seconds;
+  dataMin.innerHTML = minutes;
+  dataHou.innerHTML = hours;
+  dataDay.innerHTML = days;
 }
 
 buttonData.addEventListener('click', fnTaimer);
@@ -85,6 +72,7 @@ function fnTaimer(){
     convertMs(minMs);
   }, 1000)
 }
+
 // ---------------------------------------------------- //
 const divTimer = document.querySelector(".timer");
 const divField = document.querySelectorAll(".field");
@@ -99,10 +87,7 @@ for(let key of divField){
   key.style.textAlign= "center";
 }
 
-console.log(divField);
-
 buttonData.style.backgroundColor = "yellow";
 buttonData.style.padding = "20px 40px";
 buttonData.style.outline = "green solid 1px";
-buttonData.style.borderRadius = "50%";
-
+buttonData.style.borderRadius = "5px";
