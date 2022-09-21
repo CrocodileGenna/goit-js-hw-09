@@ -15,7 +15,7 @@ function promiseCreate(el){
     const stepVal = Number(href.stepIn.value);
     const amountVal = Number(href.amountIn.value);
     let delay = delayVal;
-    for(position = 1; position <= amountVal; position += 1){ 
+    for(let position = 1; position <= amountVal; position += 1){ 
         createPromise(position, delay)
         .then(({ position, delay }) => {
             Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);

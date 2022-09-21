@@ -67,12 +67,14 @@ function convertMs(ms) {
   if(dataDay.innerHTML < 10){
     dataDay.innerHTML = `0${days}`;
   }
-
+  
   return { days, hours, minutes, seconds };
 }
 
+function addLeadingZero(value){
 
-// console.log(thruSumaTime)
+}
+
 buttonData.addEventListener('click', fnTaimer);
 
 function fnTaimer(){
@@ -89,7 +91,8 @@ const divField = document.querySelectorAll(".field");
 
 divTimer.style.display = "flex";
 divTimer.style.marginTop = "20px";
-for(key of divField){
+
+for(let key of divField){
   key.style.display = "flex"
   key.style.flexDirection = "column";
   key.style.marginRight = "25px";
