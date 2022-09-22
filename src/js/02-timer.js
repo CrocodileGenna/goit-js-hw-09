@@ -65,12 +65,16 @@ function renderMarckup({ days, hours, minutes, seconds }){
 buttonData.addEventListener('click', fnTaimer);
 
 function fnTaimer(){
+  const aThousand = 1000;
   buttonData.setAttribute('disabled', true);
   inputData.setAttribute('disabled', true);
-  setInterval(()=>{
+  let intervalRes = setInterval(()=>{
     const minMs = thruSumaTime[thruSumaTime.length - 1] - Date.now();
+    if(minMs <= aThousand){
+      clearInterval(intervalRes)
+    }
     convertMs(minMs);
-  }, 1000)
+  }, aThousand)
 }
 
 // ---------------------------------------------------- //
